@@ -10,11 +10,12 @@ fn count_trees(input: &str, path: Slope) -> u32 {
     let mut y_position = 0;
     let mut trees_encountered = 0;
     let lines: Vec<&str> = input.lines().collect();
+    let width = lines[0].len();
 
     while y_position < lines.len() {
         let position_char: char = lines[y_position].chars().nth(x_position).unwrap();
 
-        x_position = (x_position + path.right) % 31;
+        x_position = (x_position + path.right) % width;
         y_position += path.down;
 
         if position_char == '#' {
