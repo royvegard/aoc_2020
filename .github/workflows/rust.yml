@@ -19,6 +19,8 @@ jobs:
     - name: Install cargo-aoc
       run: cargo install cargo-aoc
     - name: Build
-      run: cargo build --verbose
+      run: cargo build
     - name: Run tests
-      run: cargo test --verbose
+      run: cargo test
+    - name: Run the days
+      run: cargo run
