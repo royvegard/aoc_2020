@@ -34,6 +34,40 @@ fn solve_part2(input: &str) -> u32 {
     0
 }
 
+#[aoc(day5, part1, binary)]
+fn solve_part1_binary(input: &str) -> u32 {
+    let boarding_pass = input.lines().collect::<Vec<&str>>();
+    let mut highest_seat_id = 0;
+
+    for pass in boarding_pass {
+        let id = get_seat_id_binary(pass);
+        if id > highest_seat_id {
+            highest_seat_id = id;
+        }
+    }
+
+    highest_seat_id
+}
+
+#[aoc(day5, part2, binary)]
+fn solve_part2_binary(input: &str) -> u32 {
+    let passes = input.lines().collect::<Vec<&str>>();
+    let mut ids = vec![0];
+
+    for pass in passes {
+        ids.push(get_seat_id_binary(pass));
+    }
+
+    ids.sort();
+
+    for index in 1..ids.len() - 2 {
+        if ids[index + 1] - ids[index] > 1 {
+            return ids[index] + 1;
+        }
+    }
+    0
+}
+
 fn get_seat_id(input: &str) -> u32 {
     let mut rs: [u32; 2] = [0, 127]; // row space
     let mut cs: [u32; 2] = [0, 7]; // column space
@@ -49,6 +83,32 @@ fn get_seat_id(input: &str) -> u32 {
     }
 
     rs[0] * 8 + cs[0]
+}
+
+/// https://www.youtube.com/watch?v=wa0VcQugEsI
+fn get_seat_id_binary(input: &str) -> u32 {
+    let mut row = 0;
+    let mut rp = 64;
+    let mut col = 0;
+    let mut cp = 4;
+
+    for c in input.chars() {
+        match c {
+            'F' => rp /= 2,
+            'B' => {
+                row += rp;
+                rp /= 2;
+            }
+            'R' => {
+                col += cp;
+                cp /= 2;
+            }
+            'L' => cp /= 2,
+            _ => {}
+        }
+    }
+
+    row * 8 + col
 }
 
 #[cfg(test)]
