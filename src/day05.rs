@@ -120,5 +120,9 @@ mod tests {
         assert!(get_seat_id("BFFFBBFRRR") == 567);
         assert!(get_seat_id("FFFBBBFRRR") == 119);
         assert!(get_seat_id("BBFFBBFRLL") == 820);
+
+        assert!(get_seat_id_binary("BFFFBBFRRR") == 567);
+        assert!(get_seat_id_binary("FFFBBBFRRR") == 119);
+        assert!(get_seat_id_binary("BBFFBBFRLL") == 820);
     }
 }
