@@ -8,8 +8,8 @@ fn parse_input(input: &str) -> Vec<u32> {
 
 #[aoc(day1, part1, loops)]
 fn solve_part1_loops(input: &[u32]) -> u32 {
-    for i in 0..input.len() - 1 {
-        for j in i + 1..input.len() - 1 {
+    for i in 0..input.len() {
+        for j in i + 1..input.len() {
             if input[i] + input[j] == 2020 && i != j {
                 return input[i] * input[j];
             }
@@ -20,9 +20,9 @@ fn solve_part1_loops(input: &[u32]) -> u32 {
 
 #[aoc(day1, part2, loops)]
 fn solve_part2_loops(input: &[u32]) -> u32 {
-    for i in 0..input.len() - 1 {
-        for j in i + 1..input.len() - 1 {
-            for k in j + 1..input.len() - 1 {
+    for i in 0..input.len() {
+        for j in i + 1..input.len() {
+            for k in j + 1..input.len() {
                 if input[i] + input[j] + input[k] == 2020 {
                     return input[i] * input[j] * input[k];
                 }

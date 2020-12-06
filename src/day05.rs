@@ -26,7 +26,7 @@ fn solve_part2(input: &str) -> u32 {
 
     ids.sort();
 
-    for index in 1..ids.len() - 2 {
+    for index in 1..ids.len() - 1 {
         if ids[index + 1] - ids[index] > 1 {
             return ids[index] + 1;
         }
@@ -60,7 +60,7 @@ fn solve_part2_binary(input: &str) -> u32 {
 
     ids.sort();
 
-    for index in 1..ids.len() - 2 {
+    for index in 1..ids.len() - 1 {
         if ids[index + 1] - ids[index] > 1 {
             return ids[index] + 1;
         }
